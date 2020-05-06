@@ -1,0 +1,8 @@
+<form method="POST" action="/ideas/<%= @idea.id %>/edit">
+<label>Idea Name:</label>
+<input type="text" name="idea[name]" value="<%= @idea.name%>">
+<label>Idea Content:</label>
+<input type="text" name="idea[content]" value="<%= @idea.content%>">
+<input type="hidden" name="_method" value="patch">
+<input type="submit" value="Edit Idea">
+</form>

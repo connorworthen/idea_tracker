@@ -1,0 +1,8 @@
+<form method="POST" action="/lists/<%= @list.slug %>/edit">
+<label>List Name:</label>
+<input type="text" name="list[name]" value="<%= @list.name%>">
+<input type="hidden" name="list[private]" value='0'>
+<input type="checkbox" name="list[private]" value="1" <%='checked' if @list.private?%>> Make List Private<br><br>
+<input type="hidden" name="_method" value="patch">
+<input type="submit" value="Edit List">
+</form>

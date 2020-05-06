@@ -1,0 +1,40 @@
+<h1><%= @list.name %> <% if @list.private?%> (Private)
+<% end %></h1>
+ <a href="/lists/<%=@list.slug%>/edit">Edit</a>
+<hr>
+
+<form method="POST" action='/lists/<%= @list.slug %>'>
+
+<h3>Create New Idea</h3>
+<div class="form-group">
+<label>Idea Name:</label> <br>
+<input type="text" name="idea[name]">
+</div>
+<input type="hidden" name="idea[list_id]" value="<%= @list.id %>">
+<div class="form-group">
+<label>Idea Content:</label> <br>
+<input type="text" name="idea[content]">
+</div>
+<div class="form-group">
+<input type="submit" value="Save Idea" class="btn btn-sm">
+</div>
+</form>
+
+
+
+<% @list.ideas.each do |idea| %>
+<div class="ideacontainer">
+<p class="title"><%= idea.name %></p>
+    <p class="content"><%= idea.content %></p>
+  <% if idea.created_at == idea.updated_at %>
+  <p class="date">Created on: <%= idea.created_at %></p>
+  <% else %>
+  <p class="date">Updated on: <%= idea.updated_at %></p>
+  <% end %>
+  <a href="/ideas/<%=idea.id%>/edit">Edit Idea</a>
+</div>
+<% end %>
+<a href='/main'>Back To Main Page</a>
+<form method="POST" action="/logout">
+  <input type="submit" value="Log Out" class="btn btn-default">
+</form>

@@ -31,7 +31,7 @@ class UserController < ApplicationController
     redirect '/main'
   end
 
-  post '/login' di
+  post '/login' do
     user = User.find_by(params[:username])
       if !User
       flash[:message] = "There is no account found with the username: #{params[:username]}"

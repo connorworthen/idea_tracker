@@ -3,7 +3,7 @@ class UserController < ApplicationController
   use Rack::Flash
 
   get '/signup' do
-    erb :'/users/signup'
+    erb :'/users/signup', :layout => :frontpage
   end
 
   post '/signup' do
@@ -20,7 +20,7 @@ class UserController < ApplicationController
     end
   end
 
-  get '/mainpage' do
+  get '/main' do
     current_user
     erb :'users/mainpage'
   end

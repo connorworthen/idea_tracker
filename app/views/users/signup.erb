@@ -1,22 +1,19 @@
-<div.container>
-<h1>Your Idea Journal</h1>
-<hr>
-
-<form method="post" action="/main">
-<h3>Create New List</h3>
-<label>List Name:</label>
-<input type="text" name="name"><br><br>
-<input type="checkbox" name="private" value="1">Make List Private<br><br>
-<input type="hidden" name="user_id" value="<%= @current_user.id %>">
-<input type="submit" value="Save List" class="btn btn-default">
-</form>
-
-<h3>Idea Lists: </h3>
-<% @current_user.lists.each do |list| %>
-  <a href="/lists/<%=list.slug%>"> <%= list.name %></a> [<%= list.ideas.count%>]<br>
+<% if flash.has?(:message) %>
+<p class="warning"> <%= flash[:message] %> </p>
 <% end %>
 
-<form method="POST" action="/logout">
-  <input type="submit" value="Log Out" class="btn btn-default">
+<h5>Please sign up</h5>
+
+<form action="/users" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name">
+    <p class="danger"><%= "Name #{@errors[:name].first}" if(!!@errors && @errors[:name] && @errors[:name].first) %></p>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username">
+    <p class="danger"><%= "Username #{@errors[:username].first}" if(!!@errors && @errors[:username] && @errors[:username].first) %></p>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <p class="danger"><%= "Password #{@errors[:password].first}" if(!!@errors && @errors[:password] && @errors[:password].first) %></p>
+    <input type="submit" value="Create">
 </form>
-</div.container>
+<a href="/login">Login to an Existing Account</a>

@@ -1,4 +1,4 @@
-require 'rack-flash'
+ require 'rack-flash'
 class UserController < ApplicationController
   use Rack::Flash
 
@@ -16,19 +16,23 @@ class UserController < ApplicationController
     else 
       user = User.create(params)
       session[:id] = user.id
-      redirect to '/main'
+      redirect to '/mainpage'
     end
   end
 
-  get '/main' do
+  get '/mainpage' do
     current_user
-    erb :'users/main_page'
+    erb :'users/mainpage'
   end
 
   post '/main' do
     list = List.create(params)
     current_user
     redirect to "/main"
+  end
+
+  get '/login' do
+    erb :'users/login'
   end
 
   post '/login' do

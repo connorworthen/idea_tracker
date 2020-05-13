@@ -1,8 +1,3 @@
-<% if flash.has?(:message) %>
-<p class="warning"> <%= flash[:message] %> </p>
-<% end %>
-
-
 <h5>Please log in</h5>
 
 <form action="/login" method="post">
@@ -14,3 +9,5 @@
 </form>
 
 <a href="/signup">Register a New Account</a>
+
+<%= login_error_messages(@errors) %>

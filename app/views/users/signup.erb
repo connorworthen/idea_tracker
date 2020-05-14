@@ -1,7 +1,7 @@
 <h5>Please sign up</h5>
 
-<form action="/users" method="post">
-    <label for="username">Userame:</label>
+<form action="/users" method="POST">
+    <label for="username">Username:</label>
     <input type="text" name="username" id="username">
     <p class="danger"><%= "Userame #{@errors[:username].first}" if(!!@errors && @errors[:username] && @errors[:username].first) %></p>
     <label for="email">Email:</label>

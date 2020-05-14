@@ -2,8 +2,25 @@ require 'rack-flash'
 class UserController < ApplicationController
   use Rack::Flash
   
-  get "/users" do
-    erb :"/users/show.html"
+  get '/users' do
+    @users = User.all
+    erb :'users/show.html'
+  end
+
+  post '/users' do
+    @user = User.create(username: params[:username], password: params[:password])
+    if @user.errors.any?
+      @errors = @user.errors.messages
+      erb :'/users/signup'
+    else
+      session[:user_id] = @user.id
+      redirect '/users'
+    end
+  end
+
+  get '/users/:id' do
+    @user = User.find_by(id: params[:id])
+    erb :'users/show.html'
   end
 
   get "/signup" do
@@ -43,10 +60,8 @@ class UserController < ApplicationController
   end
 
   get "/signout" do
-    if signed_in?
-      session.destroy
-      redirect "/"
-    end
+    session.clear
+    redirect "/"
   end
 
   get "/users/:id/edit" do

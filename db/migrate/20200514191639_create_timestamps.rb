@@ -1,4 +1,4 @@
-class CreateTimestamps < ActiveRecord::Migration[6.0]
+class CreateTimestamps < ActiveRecord::Migration
   def change
     add_column :ideas, :created_at, :datetime 
     add_column :ideas, :updated_at, :datetime

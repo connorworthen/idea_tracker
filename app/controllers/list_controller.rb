@@ -19,8 +19,8 @@ class ListController < ApplicationController
   end
 
   get '/lists/:slug' do
-    redirect_login
-    @list = List.find_by_slug(params[:slug])
+    # redirect_login
+    # @list = List.find_by_slug(params[:slug])
     erb :'/lists/show'
   end
 

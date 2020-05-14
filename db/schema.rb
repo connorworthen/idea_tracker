@@ -10,20 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_012428) do
+ActiveRecord::Schema.define(version: 2020_05_14_175539) do
 
-create_table "ideas", force: :cascade do |t|
-    t.string   "name"
-    t.string   "content"
-    t.integer  "list_id"
+  create_table "ideas", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.integer "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "lists", force: :cascade do |t|
-    t.string  "name"
-    t.integer "user_id"
-    t.boolean "private"
   end
 
   create_table "users", force: :cascade do |t|

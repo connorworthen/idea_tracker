@@ -1,18 +1,9 @@
 require 'rack-flash'
 class UserController < ApplicationController
   use Rack::Flash
-   
-    get '/users' do
-        erb :"users/show.html"
-    end
-
-  get '/users/:id' do
-    if signed_in?
-      @user = User.find(params[:id])
-      erb :'/users/show.html'
-    else
-      redirect '/login'
-    end
+  
+  get "/users" do
+    erb :"/users/show.html"
   end
 
   get "/login" do
